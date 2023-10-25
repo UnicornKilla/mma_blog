@@ -10,6 +10,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 class LoginUser(DataMixin, LoginView):
     form_class = AuthenticationForm
@@ -76,6 +77,7 @@ class ShowPost(DataMixin, DetailView):
         c_def = self.get_user_context(title=context['post'])
         return dict(list(context.items()) + list(c_def.items()))
 
+
 class AddPage(LoginRequiredMixin, DataMixin, CreateView):
     form_class = AddPostForm
     template_name = 'blog/addpage.html'
@@ -87,7 +89,9 @@ class AddPage(LoginRequiredMixin, DataMixin, CreateView):
         c_def = self.get_user_context(title='Добавление статьи')
         return dict(list(context.items()) + list(c_def.items()))
 
-class  ContactFormView(DataMixin, FormView):
+
+
+class ContactFormView(DataMixin, FormView):
     form_class = ContactForm
     template_name = 'blog/contact.html'
     success_url = reverse_lazy('index')

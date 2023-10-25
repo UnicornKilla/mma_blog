@@ -71,12 +71,12 @@ header{
     border: 1px solid #264b5d;
     margin-bottom: 40px;
 }
-.first, .data{
-    padding: 10px 20 px;
+.first, .date{
+    padding: 10px 20px;
     background: #264b5d;
     font-size: 18px;
     color: #FFF;
-    margin: 0;
+    margin-left: 30px;
 }
 .image{
     float: left;
